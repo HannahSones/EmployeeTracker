@@ -50,32 +50,32 @@ VALUES (10, "Legal Assistant", 27500, 5);
 
 
 -- Sample employees
-INSERT INTO employee (id, name, role_id, manager_id)
-VALUES (1, "Hannah Sones", 2, null);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES (1, "Hannah", "Sones", 2, null);
 
-INSERT INTO employee (id, name, role_id, manager_id)
-VALUES (2, "Elliot Petrek", 1, 1);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES (2, "Elliot", "Petrek", 1, 1);
 
-INSERT INTO employee (id, name, role_id, manager_id)
-VALUES (3, "Kate Matthews", 3, 4);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES (3, "Kate", "Matthews", 3, 4);
 
-INSERT INTO employee (id, name, role_id, manager_id)
-VALUES (4, "Jonathan Perry", 4, null);
+INSERT INTO employee (id, first_name, last_name role_id, manager_id)
+VALUES (4, "Jonathan", "Perry", 4, null);
 
-INSERT INTO employee (id, name, role_id, manager_id)
-VALUES (5, "Dan Robson", 5, 6);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES (5, "Dan", "Robson", 5, 6);
 
-INSERT INTO employee (id, name, role_id, manager_id)
-VALUES (6, "Nathan Bell", 6, null);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES (6, "Nathan", "Bell", 6, null);
 
-INSERT INTO employee (id, name, role_id, manager_id)
-VALUES (7, "Becky Cole", 7, null);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES (7, "Becky", "Cole", 7, null);
 
-INSERT INTO employee (id, name, role_id, manager_id)
-VALUES (8, "Amy Wilkes", 8, 7);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES (8, "Amy", "Wilkes", 8, 7);
 
-INSERT INTO employee (id, name, role_id, manager_id)
-VALUES (9, "Mark Woodman", 9, null);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES (9, "Mark", "Woodman", 9, null);
 
-INSERT INTO employee (id, name, role_id, manager_id)
-VALUES (10, "James Clifford", 10, 9);
+INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+VALUES (10, "James", "Clifford", 10, 9);

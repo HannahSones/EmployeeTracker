@@ -2,7 +2,7 @@
 const mysql = require("mysql");
 const connection = require("./db/db.js")
 const inquirer = require("inquirer");
-const cTable = require("console.table");
+require("console.table");
 
 
 // Introduce employee tracker
@@ -40,7 +40,6 @@ function mainMenu() {
     })
     .then((answer) => {
 
-        // Switch case depending on user option
         switch (answer.mainMenuChoice) {
             case "View all employees":
                 viewAllEmp();
@@ -72,3 +71,15 @@ function mainMenu() {
         }
     });
 }
+
+
+// View all employees 
+function viewAllEmp(){
+    connection.query("SELECT * FROM employee", function(err, result) {
+        if (err) console.log('Error in query', err);
+        else console.table('result', result);
+})
+}
+
+// Same as above for role and department
+// Additions is INSERT INTO

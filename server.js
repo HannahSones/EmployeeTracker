@@ -77,9 +77,25 @@ function mainMenu() {
 function viewAllEmp(){
     connection.query("SELECT * FROM employee", function(err, result) {
         if (err) console.log('Error in query', err);
-        else console.table('result', result);
-})
+        else console.table(result);
+        mainMenu()
+    })
 }
 
-// Same as above for role and department
-// Additions is INSERT INTO
+// View all roles
+function viewAllRoles(){
+    connection.query("SELECT employee.first_name, employee.last_name, role.title AS Title FROM employee JOIN role ON employee.role_id = role.id;", function(err, result) {
+        if (err) console.log('Error in query', err);
+        else console.table(result);
+        mainMenu()
+    })
+}
+
+// View all departments
+function viewAllDepts(){
+    connection.query("SELECT * FROM department;", function(err, result) {
+        if (err) console.log('Error in query', err);
+        else console.table(result);
+        mainMenu()
+    })
+}

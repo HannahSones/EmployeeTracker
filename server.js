@@ -26,8 +26,6 @@ function mainMenu() {
                 "Update employee role",
 
                 // Bonus functions
-                // "View all employees by role",
-                // "View all employees by department",
                 // "View all employees by manager",
                 // "Update employee manager",
 
@@ -35,6 +33,7 @@ function mainMenu() {
                 // "Delete role",
                 // "Delete department",
                 // "View department budgets"
+                "Exit"
             ]
         })
         .then((answer) => {
@@ -66,6 +65,9 @@ function mainMenu() {
 
                 case "Update employee role":
                     updateEmpRole();
+                    break;
+                case "Exit":
+                    connection.end();
                     break;
             }
         });
@@ -246,3 +248,61 @@ function addDept() {
             )
         })
       }
+
+
+// Update employee role
+
+function updateEmpRole() {
+
+    // let roleArr = [];
+    // function selectRole() {
+    //     connection.query("SELECT * FROM role", function (err, res) {
+    //         if (err) throw err
+    //         for (let i = 0; i < res.length; i++) {
+    //             roleArr.push(res[i].title);
+    //         }
+    //     })
+    //     return roleArr;
+    // }
+
+    // connection.query("SELECT employee.first_name, employee.last_name, role.title FROM employee JOIN role ON employee.role_id = role.id;", function(err, res) {
+    //      if (err) throw err
+    //      console.log(res)
+    //      inquirer.prompt([
+    //           {
+    //             name: "lastName",
+    //             type: "rawlist",
+    //             choices: function() {
+    //               let lastName = [];
+    //               for (let i = 0; i < res.length; i++) {
+    //                 lastName.push(res[i].last_name);
+    //               }
+    //               return lastName;
+    //             },
+    //             message: "What is the Employee's last name? ",
+    //           },
+    //           {
+    //             name: "role",
+    //             type: "rawlist",
+    //             message: "What is the Employees new title? ",
+    //             choices: selectRole()
+    //           },
+    //       ]).then(function(answer) {
+    //         let roleId = selectRole().indexOf(answer.role) + 1
+    //         connection.query("UPDATE employee SET WHERE ? ", 
+    //         {
+    //           last_name: answer.lastName
+    //         }, 
+    //         {
+    //           role_id: roleId
+    //         }, 
+    //         function(err){
+    //             if (err) throw err
+    //             console.table(answer)
+    //             console.log("Success. You have updated your employees role.")
+    //             mainMenu()
+    //         })
+      
+    //     });
+    //   });
+    }

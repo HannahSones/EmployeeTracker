@@ -26,13 +26,10 @@ The project includes a `seeds.sql` file to populate the tables with initial data
 
 ## Functionality  
 The following screen record video demonstrates the entirety of the app's functionality.
-![Employee tracker video walk through]()   
+![Employee tracker video walk through](https://github.com/HannahSones/EmployeeTracker/blob/main/assets/EmployeeTracker%20walkthrough.gif)   
 
 The database uses the following schema structure, containing three tables.
-![Database schema]()   
-
-The screenshot below displays an example of what the interface looks like when requesting view all employees.   
-![Employee tracker preview]()
+![Database schema](https://github.com/HannahSones/EmployeeTracker/blob/main/assets/Database%20schema.png)   
 
 -------------
 

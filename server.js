@@ -246,15 +246,6 @@ function addDept() {
 
 function updateEmpRole() {
 
-    // let allEmp = [];
-    // connection.query("SELECT * FROM employee", function (err, answer) {
-    //     if (err) throw err
-    //     for (let i = 0; i < answer.length; i++) {
-    //         let employeeString =
-    //             answer[i].id + " " + answer[i].first_name + " " + answer[i].last_name;
-    //             allEmp.push(employeeString);
-    //     }
-
     let roleArr = [];
     function selectRole() {
         connection.query("SELECT * FROM role", function (err, res) {
@@ -268,7 +259,6 @@ function updateEmpRole() {
 
     connection.query("SELECT employee.last_name, role.title FROM employee JOIN role ON employee.role_id = role.id;", function (err, res) {
         if (err) throw err
-        console.log(res)
         inquirer.prompt([
             {
                 name: "lastName",
@@ -284,15 +274,15 @@ function updateEmpRole() {
             },
             {
                 name: "role",
-                type: "rawlist",
+                type: "list",
                 message: "What is the employees new title? ",
                 choices: selectRole()
             },
-        ]).then(function (val) {
-            var roleId = selectRole().indexOf(val.role) + 1
+        ]).then(function (answer) {
+            let roleId = selectRole().indexOf(answer.role) + 1
             connection.query("UPDATE employee SET WHERE ?",
                 {
-                    last_name: val.lastName
+                    last_name: answer.lastName
 
                 },
                 {
@@ -301,10 +291,9 @@ function updateEmpRole() {
                 },
                 function (err) {
                     if (err) throw err
-                    console.table(val)
+                    console.table(answer)
                     mainMenu()
                 })
-
         });
     });
 }

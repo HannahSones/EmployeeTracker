@@ -246,58 +246,65 @@ function addDept() {
 
 function updateEmpRole() {
 
-    let allEmp = [];
-    connection.query("SELECT * FROM employee", function (err, answer) {
-        if (err) throw err
-        for (let i = 0; i < answer.length; i++) {
-            let employeeString =
-                answer[i].id + " " + answer[i].first_name + " " + answer[i].last_name;
-                allEmp.push(employeeString);
-        }
+    // let allEmp = [];
+    // connection.query("SELECT * FROM employee", function (err, answer) {
+    //     if (err) throw err
+    //     for (let i = 0; i < answer.length; i++) {
+    //         let employeeString =
+    //             answer[i].id + " " + answer[i].first_name + " " + answer[i].last_name;
+    //             allEmp.push(employeeString);
+    //     }
 
-        let roleArr = [];
-        function selectRole() {
-            connection.query("SELECT * FROM role", function (err, res) {
-                if (err) throw err
-                for (let i = 0; i < res.length; i++) {
-                    roleArr.push(res[i].title);
-                }
-            })
-            return roleArr;
-        }
-
-        connection.query("SELECT employee.first_name, employee.last_name, role.title FROM employee JOIN role ON employee.role_id = role.id;", function (err, res) {
+    let roleArr = [];
+    function selectRole() {
+        connection.query("SELECT * FROM role", function (err, res) {
             if (err) throw err
-            inquirer.prompt([
+            for (let i = 0; i < res.length; i++) {
+                roleArr.push(res[i].title);
+            }
+        })
+        return roleArr;
+    }
+
+    connection.query("SELECT employee.last_name, role.title FROM employee JOIN role ON employee.role_id = role.id;", function (err, res) {
+        if (err) throw err
+        console.log(res)
+        inquirer.prompt([
+            {
+                name: "lastName",
+                type: "list",
+                choices: function () {
+                    let lastName = [];
+                    for (let i = 0; i < res.length; i++) {
+                        lastName.push(res[i].last_name);
+                    }
+                    return lastName;
+                },
+                message: "Please select the employee you wish to update from their last name ",
+            },
+            {
+                name: "role",
+                type: "rawlist",
+                message: "What is the employees new title? ",
+                choices: selectRole()
+            },
+        ]).then(function (val) {
+            var roleId = selectRole().indexOf(val.role) + 1
+            connection.query("UPDATE employee SET WHERE ?",
                 {
-                    name: "updateEmployee",
-                    type: "list",
-                    choices: allEmp,
-                    message: "Select the employee you want to update ",
+                    last_name: val.lastName
+
                 },
                 {
-                    name: "role",
-                    type: "list",
-                    message: "What is the Employees new role? ",
-                    choices: selectRole()
-                }
-            ]).then(function (answer) {
-                let roleId = selectRole().indexOf(answer.role) + 1
-                console.log("ID number", roleId);
-                connection.query("UPDATE employee SET role_id = ? WHERE id = ? ",
-                    {
-                        last_name: answer.lastName
-                    },
-                    {
-                        role_id: roleId
-                    },
-                    function (err) {
-                        if (err) throw err
-                        console.table(answer)
-                        console.log("Success. You have updated your employees role.")
-                        mainMenu()
-                    })
-            });
+                    role_id: roleId
+
+                },
+                function (err) {
+                    if (err) throw err
+                    console.table(val)
+                    mainMenu()
+                })
+
         });
-    })
+    });
 }
